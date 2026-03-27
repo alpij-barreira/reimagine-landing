@@ -94,7 +94,7 @@ export default function FeaturedProducts() {
       {/* Cabecera */}
       <div className="flex justify-between items-start mb-8">
         <h2 className="font-canon italic text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.01em] text-brand-black">
-          Nuestra<br />seleccion personal.
+          Descubre<br />tu nuevo camino.
         </h2>
         <p className="font-america text-[11px] text-brand-black/40 max-w-[180px] leading-[1.7] text-right">
           Prendas de la temporada actual.<br />

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 const LINES = [
-  "Disenamos para los que no publican sus kilometros.",
+  "Creamos para los que no publican sus kilometros.",
   "Para los que eligen el tejido antes que el color.",
   "Para los que entienden que correr no es un deporte.",
   "Es una forma de estar en el mundo.",

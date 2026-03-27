@@ -28,7 +28,7 @@ export default function Categories() {
     <section className="px-10 py-16">
       {/* Titulo */}
       <h2 className="font-canon italic text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.01em] text-brand-black mb-10">
-        Todas las<br />categorias.
+        Sumérgete<br />en nuestro universo.
       </h2>
 
       {/* Mural — sin gap, celdas iguales */}
