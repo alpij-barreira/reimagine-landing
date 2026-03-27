@@ -36,7 +36,7 @@ export default function Hero() {
             animation: "fade-up 1.19s cubic-bezier(0.16, 1, 0.3, 1) 1.62s both",
           }}
         >
-          Moda para quienes corren sin perseguir
+          Moda para deportistas introspectivos
         </p>
       </div>
     </section>
