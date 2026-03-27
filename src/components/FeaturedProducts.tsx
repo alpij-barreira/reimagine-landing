@@ -79,7 +79,7 @@ function ProductInfo({ product }: { product: Product }) {
           />
         ))}
       </div>
-      <span className="font-america text-[11px] text-brand-black leading-tight block mb-0.5">{product.name}</span>
+      <span className="font-america text-[11px] text-brand-black leading-tight block mb-0.2">{product.name}</span>
       <span className="font-america text-[11px] text-brand-black/60">&euro;{product.price}</span>
     </div>
   );
