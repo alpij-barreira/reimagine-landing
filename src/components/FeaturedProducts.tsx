@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import CTA from "./CTA";
 
 const SIZES = ["XS", "S", "M", "L", "XL"];
@@ -21,31 +20,8 @@ const PRODUCTS: Product[] = [
   { id: 6, name: "Parka Vestido Air",          price: 245, image: "/images/Ropa7.png", colors: ["#F0EDE8", "#8A8A8A"] },
 ];
 
-const EDITORIAL: {
-  id: string;
-  label: string;
-  title: string;
-  subtitle: string;
-  image: string;
-  href: string;
-}[] = [
-  {
-    id: "femenina",
-    label: "TEMPORADA 2026",
-    title: "Coleccion\nFemenina",
-    subtitle: "Prendas de autor para moverte sin limites.",
-    image: "/images/Ropa1.png",
-    href: "/mujer",
-  },
-  {
-    id: "masculina",
-    label: "NUEVA TEMPORADA",
-    title: "Coleccion\nMasculina",
-    subtitle: "Tejidos de origen. Corte de precision.",
-    image: "/images/Ropa8.png",
-    href: "/hombre",
-  },
-];
+/* Productos destacados en la franja superior (los dos no usados en la franja inferior) */
+const TOP_PRODUCTS = [PRODUCTS[1], PRODUCTS[4]];
 
 /* ── Hover panel con tallas ── */
 function HoverPanel() {
@@ -101,38 +77,21 @@ export default function FeaturedProducts() {
         </p>
       </div>
 
-      {/* ── Franja superior: 2 imágenes editoriales ── */}
+      {/* ── Franja superior: 2 tarjetas de producto grandes ── */}
       <div className="grid grid-cols-2 gap-2.5">
-        {EDITORIAL.map((hero) => (
-          <div key={hero.id} className="group relative h-[520px] overflow-hidden">
-            <Image
-              src={hero.image}
-              alt={hero.title}
-              fill
-              className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-              sizes="50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
-            <div className="absolute bottom-0 left-0 p-8">
-              <p className="font-america text-[8.5px] tracking-[0.24em] uppercase text-white/45 mb-3">
-                {hero.label}
-              </p>
-              <h3 className="font-canon italic text-white text-[2rem] leading-[1.1] tracking-[-0.01em] mb-2 whitespace-pre-line">
-                {hero.title}
-              </h3>
-              <p className="font-america text-[11px] text-white/60 mb-6 leading-[1.65]">
-                {hero.subtitle}
-              </p>
-              {/* CTA blanco — mismo patron que CTA.tsx pero sobre fondo oscuro */}
-              <Link
-                href={hero.href}
-                className="group/cta relative inline-flex items-center gap-2 font-america text-[11px] tracking-widest uppercase text-white"
-              >
-                <span>Ver ahora</span>
-                <span aria-hidden className="transition-transform duration-200 group-hover/cta:translate-x-0.5">→</span>
-                <span aria-hidden className="absolute inset-x-0 -bottom-0.5 h-px stitch origin-left scale-x-0 transition-transform duration-300 group-hover/cta:scale-x-100" />
-              </Link>
+        {TOP_PRODUCTS.map((product) => (
+          <div key={product.id} className="group flex flex-col">
+            <div className="relative h-[520px] overflow-hidden">
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                sizes="50vw"
+              />
+              <HoverPanel />
             </div>
+            <ProductInfo product={product} />
           </div>
         ))}
       </div>
