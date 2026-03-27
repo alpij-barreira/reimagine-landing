@@ -9,7 +9,7 @@ export default function Hero() {
         alt="Reimagine — running de autor"
         fill
         priority
-        className="object-cover object-center"
+        className="object-cover object-top"
         sizes="100vw"
       />
 

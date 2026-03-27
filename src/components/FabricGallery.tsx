@@ -8,7 +8,7 @@ const SLIDES = [
     id: 1,
     country: "Japon",
     title: "Japon",
-    copy: "Nuestras telas azules se elaboran siguiendo el proceso tradicional conocido como Aizome, una técnica de teñido milenaria",
+    copy: "Nuestras telas azules se elaboran siguiendo el proceso\ntradicional conocido como Aizome, técnica de teñido milenaria",
     center: "/images/Tela17.png",
     left: "/images/Tela1.png",
     right: "/images/Tela2.png",
@@ -21,7 +21,7 @@ const SLIDES = [
     id: 2,
     country: "Francia",
     title: "Francia",
-    copy: "Cultivar lino es un arte dominado por los agricultores y en Francia ocupa un lugar privilegiado en la industria textil",
+    copy: "Cultivar lino es un arte dominado por los agricultores y en\nFrancia, un lugar privilegiado en la industria textil",
     center: "/images/Tela10.png",
     left: "/images/Tela9.png",
     right: "/images/Tela6.png",
@@ -34,7 +34,7 @@ const SLIDES = [
     id: 3,
     country: "Italia",
     title: "Italia",
-    copy: "Para nuestras prendas de invierno, contamos con la colaboración de la legendaria sastrería Lanieri y sus años de experiencia",
+    copy: "Para nuestras prendas de invierno, contamos con la colaboración\nde la legendaria sastrería Lanieri y sus años de experiencia",
     center: "/images/Tela15.png",
     left: "/images/Tela13.png",
     right: "/images/Tela11.png",
@@ -235,7 +235,7 @@ export default function FabricGallery() {
             <h3 className="font-canon italic text-[1.85rem] leading-none tracking-[-0.01em] text-brand-black">
               {slide.title}
             </h3>
-            <p className="font-america text-[11px] tracking-[0.08em] text-brand-black/45">
+            <p className="font-america text-[11px] tracking-[0.08em] text-brand-black/45 whitespace-pre-line text-center">
               {slide.copy}
             </p>
           </div>
