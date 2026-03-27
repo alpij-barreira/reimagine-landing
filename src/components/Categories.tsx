@@ -59,11 +59,8 @@ export default function Categories() {
             <div className="absolute inset-0 bg-black/30 transition-colors duration-500 group-hover:bg-black/40" />
 
             {/* Texto centrado */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-              <p className="font-america text-[7.5px] tracking-[0.28em] uppercase text-white/50">
-                {cat.label}
-              </p>
-              <h3 className="font-canon italic text-white text-[clamp(1.1rem,1.8vw,1.65rem)] leading-none tracking-[-0.01em]">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <h3 className="font-canon italic text-white text-[clamp(1.1rem,1.8vw,1.65rem)] leading-none tracking-[-0.01em] text-center">
                 {cat.title}
               </h3>
             </div>

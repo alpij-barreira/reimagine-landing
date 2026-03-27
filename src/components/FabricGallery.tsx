@@ -225,16 +225,19 @@ export default function FabricGallery() {
       </div>
 
       {/* ── Texto del slide ── */}
-      <div className="relative h-[44px] flex items-center justify-center mt-4">
+      <div className="relative h-[64px] flex items-center justify-center mt-4">
         {SLIDES.map((slide, i) => (
           <div
             key={slide.id}
-            className="absolute inset-0 flex items-center justify-center"
+            className="absolute inset-0 flex flex-col items-center justify-start gap-1.5"
             style={slideStyle(i)}
           >
-            <h3 className="font-canon italic text-[1.85rem] leading-none tracking-[-0.01em] text-brand-black text-center">
+            <h3 className="font-canon italic text-[1.85rem] leading-none tracking-[-0.01em] text-brand-black">
               {slide.title}
             </h3>
+            <p className="font-america text-[11px] tracking-[0.08em] text-brand-black/45 whitespace-pre-line text-center">
+              {slide.copy}
+            </p>
           </div>
         ))}
       </div>
