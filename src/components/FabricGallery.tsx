@@ -200,12 +200,7 @@ export default function FabricGallery() {
         <button
           onClick={() => go(current - 1)}
           aria-label="Anterior"
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-20
-                     w-9 h-9 rounded-full border border-brand-black/25 bg-white/70 backdrop-blur-sm
-                     flex items-center justify-center
-                     opacity-0 group-hover:opacity-100
-                     hover:border-brand-black hover:bg-white
-                     transition-all duration-300"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full border border-brand-black/25 bg-white/70 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 hover:border-brand-black hover:bg-white transition-all duration-300"
         >
           <span className="font-america text-[12px] text-brand-black/60 hover:text-brand-black">←</span>
         </button>
@@ -213,12 +208,7 @@ export default function FabricGallery() {
         <button
           onClick={() => go(current + 1)}
           aria-label="Siguiente"
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-20
-                     w-9 h-9 rounded-full border border-brand-black/25 bg-white/70 backdrop-blur-sm
-                     flex items-center justify-center
-                     opacity-0 group-hover:opacity-100
-                     hover:border-brand-black hover:bg-white
-                     transition-all duration-300"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full border border-brand-black/25 bg-white/70 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 hover:border-brand-black hover:bg-white transition-all duration-300"
         >
           <span className="font-america text-[12px] text-brand-black/60 hover:text-brand-black">→</span>
         </button>
