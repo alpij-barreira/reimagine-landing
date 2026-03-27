@@ -87,7 +87,7 @@ export default function FabricGallery() {
   return (
     <section className="px-10 py-20 bg-brand-white">
       {/* ── Cabecera ── */}
-      <div className="flex justify-between items-start mb-10">
+      <div className="flex justify-between items-end mb-10">
         <h2 className="font-canon italic text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.01em] text-brand-black">
           Tejidos que<br />merecen su origen.
         </h2>

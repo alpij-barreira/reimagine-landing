@@ -26,10 +26,17 @@ const CATEGORIES = [
 export default function Categories() {
   return (
     <section className="px-10 py-16">
-      {/* Titulo */}
-      <h2 className="font-canon italic text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.01em] text-brand-black mb-10">
-        Sumérgete<br />en nuestro universo.
-      </h2>
+      {/* Titulo + copy */}
+      <div className="flex justify-between items-end mb-10">
+        <h2 className="font-canon italic text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.01em] text-brand-black">
+          Sumérgete<br />en nuestro universo.
+        </h2>
+        <p className="font-america text-[11px] text-brand-black/40 max-w-[210px] leading-[1.7] text-right">
+          Cinco universos, una sola firma.<br />
+          Mujer, hombre, colecciones,<br />
+          esenciales y accesorios.
+        </p>
+      </div>
 
       {/* Mural — sin gap, celdas iguales */}
       <div className="grid grid-cols-5">

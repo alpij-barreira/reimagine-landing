@@ -90,7 +90,7 @@ export default function FeaturedProducts() {
   return (
     <section className="px-10 py-16">
       {/* Cabecera */}
-      <div className="flex justify-between items-start mb-8">
+      <div className="flex justify-between items-end mb-8">
         <h2 className="font-canon italic text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.01em] text-brand-black">
           Descubre<br />tu nuevo camino.
         </h2>
