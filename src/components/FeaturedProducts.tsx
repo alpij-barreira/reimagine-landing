@@ -79,10 +79,8 @@ function ProductInfo({ product }: { product: Product }) {
           />
         ))}
       </div>
-      <div className="flex justify-between items-baseline gap-2">
-        <span className="font-america text-[11px] text-brand-black leading-tight">{product.name}</span>
-        <span className="font-america text-[11px] text-brand-black whitespace-nowrap">€{product.price}</span>
-      </div>
+      <span className="font-america text-[11px] text-brand-black leading-tight block mb-1.5">{product.name}</span>
+      <span className="font-america text-[11px] text-brand-black/60">&euro;{product.price}</span>
     </div>
   );
 }
