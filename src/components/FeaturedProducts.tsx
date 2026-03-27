@@ -69,8 +69,8 @@ function HoverPanel() {
 /* ── Info debajo de la imagen ── */
 function ProductInfo({ product }: { product: Product }) {
   return (
-    <div className="pt-2 pb-0.5">
-      <div className="flex gap-1.5 mb-1.5">
+    <div className="pt-1 pb-0.5 flex flex-col gap-1.5">
+      <div className="flex gap-1.5">
         {product.colors.map((c) => (
           <span
             key={c}
@@ -79,8 +79,8 @@ function ProductInfo({ product }: { product: Product }) {
           />
         ))}
       </div>
-      <span className="font-america text-[11px] text-brand-black leading-tight block mb-0.2">{product.name}</span>
-      <span className="font-america text-[11px] text-brand-black/60">&euro;{product.price}</span>
+      <span className="font-america text-[11px] text-brand-black leading-none">{product.name}</span>
+      <span className="font-america text-[11px] text-brand-black/60 leading-none">&euro;{product.price}</span>
     </div>
   );
 }
