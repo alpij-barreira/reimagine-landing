@@ -1,26 +1,183 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─────────────────────────────────────────
+   GT Canon Trial — serif, titulos y copys editoriales
+   ───────────────────────────────────────── */
+@font-face {
+  font-family: "GT Canon Trial";
+  src: url("/fonts/GT-Canon-S-Standard-Regular-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: "GT Canon Trial";
+  src: url("/fonts/GT-Canon-S-Standard-Regular-Italic-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: "GT Canon Trial";
+  src: url("/fonts/GT-Canon-S-Standard-Medium-Trial.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─────────────────────────────────────────
+   GT America Trial — sans-serif, UI, precios, botones
+   (el archivo "Regular" no existe en el paquete de prueba;
+   se usa Light como peso base y Medium Italic como 500)
+   ───────────────────────────────────────── */
+@font-face {
+  font-family: "GT America Trial";
+  src: url("/fonts/GT-America-Standard-Light-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GT America Trial";
+  src: url("/fonts/GT-America-Standard-Light-Italic-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GT America Trial";
+  src: url("/fonts/GT-America-Standard-Medium-Italic-Trial.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─────────────────────────────────────────
+   Tailwind v4 theme tokens
+   ───────────────────────────────────────── */
+@theme {
+  /* Colores de marca */
+  --color-brand-black: #181A1A;
+  --color-brand-white: #FFFFFF;
+  --color-brand-offwhite: #EDEEEE;
+  --color-brand-orange: #F54E00;
+
+  /* Familias tipograficas */
+  --font-canon: "GT Canon Trial", Georgia, serif;
+  --font-america: "GT America Trial", system-ui, sans-serif;
+}
+
+/* ─────────────────────────────────────────
+   Animaciones globales
+   ───────────────────────────────────────── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─────────────────────────────────────────
+   Clases de utilidad no generables por Tailwind
+   ───────────────────────────────────────── */
+
+/* Navbar: entrada al cargar y transicion de scroll.
+   Se definen aqui y NO en style={{ }} para evitar
+   que React 19 compare el shorthand serializado en
+   SSR con la version expandida que el DOM almacena. */
+.navbar-enter {
+  animation: fade-down 0.77s cubic-bezier(0.16, 1, 0.3, 1) 2.98s both;
+}
+
+.navbar-scroll-transition {
+  transition:
+    background-color 600ms ease,
+    border-color 600ms ease,
+    backdrop-filter 600ms ease,
+    color 600ms ease;
+}
+
+/* Underline de costura: línea punteada naranja que imita una puntada de tela */
+.stitch {
+  background-image: repeating-linear-gradient(
+    to right,
+    #F54E00 0px,
+    #F54E00 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  background-color: transparent;
+}
+
+/* Menú móvil: drawer lateral izquierdo */
+.mobile-menu-transition {
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-overlay-transition {
+  transition: opacity 400ms ease;
+}
+
+/* ─────────────────────────────────────────
+   Base
+   ───────────────────────────────────────── */
+:root {
+  color-scheme: light;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFFFFF;
+  color: #181A1A;
+  font-family: var(--font-america);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+  Grain overlay — técnica de Sezane y otras marcas premium:
+  un pseudo-elemento fijo cubre toda la pantalla con un ruido
+  SVG (feTurbulence type="turbulence") mezclado en modo overlay.
+
+  Por qué funciona:
+  - position: fixed + inset: 0  →  cubre siempre el viewport,
+    sin importar el scroll ni la altura de la página
+  - z-index: 9999               →  flota sobre TODO el contenido
+  - pointer-events: none        →  completamente no-interactivo;
+    los clicks, hovers y selecciones pasan al contenido de abajo
+  - mix-blend-mode: overlay     →  las zonas claras del grano
+    aclaran ligeramente, las oscuras oscurecen, resultando en una
+    textura que se integra tanto en secciones blancas como negras
+  - opacity: 0.14               →  sutil pero perceptible; ajusta
+    a 0.08-0.10 para más discreción o 0.20 para más presencia
+*/
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.21;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23grain)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
 }
