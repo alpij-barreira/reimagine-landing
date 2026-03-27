@@ -12,12 +12,12 @@ interface Product {
 }
 
 const PRODUCTS: Product[] = [
-  { id: 1, name: "Anorak Corto Azul",         price: 185, image: "/images/Ropa2.png", colors: ["#2B3D6B", "#1A1A1A", "#6B5C4E"] },
+  { id: 1, name: "Anorak Corto Azul",         price: 185, image: "/images/ropaHor1.png", colors: ["#2B3D6B", "#1A1A1A", "#6B5C4E"] },
   { id: 2, name: "Camiseta Manga Larga Miles", price: 95,  image: "/images/Ropa3.png", colors: ["#F0EDE8", "#2B3D6B"] },
   { id: 3, name: "Pantalon Ciclista Aria",     price: 135, image: "/images/Ropa4.png", colors: ["#1A1A1A", "#8A8A8A"] },
   { id: 4, name: "Camiseta Lagos Noir",        price: 85,  image: "/images/Ropa5.png", colors: ["#1A1A1A", "#F0EDE8"] },
   { id: 5, name: "Sudadera Contour White",     price: 165, image: "/images/Ropa6.png", colors: ["#C84832", "#1A1A1A", "#F0EDE8"] },
-  { id: 6, name: "Parka Vestido Air",          price: 245, image: "/images/Ropa7.png", colors: ["#F0EDE8", "#8A8A8A"] },
+  { id: 6, name: "Parka Vestido Air",          price: 245, image: "/images/ropaHor2.png", colors: ["#F0EDE8", "#8A8A8A"] },
 ];
 
 /* Productos destacados en la franja superior (los dos no usados en la franja inferior) */
