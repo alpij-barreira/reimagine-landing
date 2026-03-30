@@ -1,28 +1,60 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────
-   GT Canon Trial — serif, titulos y copys editoriales
+   ABC Arizona Serif — serif editorial, reemplaza GT Canon.
+   La cursiva ligera (LightItalic) se registra como weight 400 italic
+   para que todos los usos existentes de "font-canon italic" la adopten
+   automáticamente sin modificar ningún componente.
    ───────────────────────────────────────── */
+
+/* Upright — pesos completos */
 @font-face {
-  font-family: "GT Canon Trial";
-  src: url("/fonts/GT-Canon-S-Standard-Regular-Trial.otf") format("opentype");
-  font-weight: 400;
+  font-family: "ABC Arizona Serif";
+  src: url("/fonts/ABCArizonaSerif-Light-Trial.otf") format("opentype");
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "GT Canon Trial";
-  src: url("/fonts/GT-Canon-S-Standard-Regular-Italic-Trial.otf") format("opentype");
+  font-family: "ABC Arizona Serif";
+  src: url("/fonts/ABCArizonaSerif-Regular-Trial.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Italic — peso 400 apunta al archivo LightItalic para el aspecto
+   ligero deseado; el peso 300 usa ThinItalic para variantes extra-finas */
+@font-face {
+  font-family: "ABC Arizona Serif";
+  src: url("/fonts/ABCArizonaSerif-ThinItalic-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ABC Arizona Serif";
+  src: url("/fonts/ABCArizonaSerif-LightItalic-Trial.otf") format("opentype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "GT Canon Trial";
-  src: url("/fonts/GT-Canon-S-Standard-Medium-Trial.otf") format("opentype");
+  font-family: "ABC Arizona Serif";
+  src: url("/fonts/ABCArizonaSerif-RegularItalic-Trial.otf") format("opentype");
   font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Variable — cobertura amplia para futuros usos */
+@font-face {
+  font-family: "ABC Arizona Serif";
+  src: url("/fonts/ABCArizonaSerifVariable-Trial.ttf") format("truetype");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
@@ -67,7 +99,7 @@
   --color-brand-orange: #F54E00;
 
   /* Familias tipograficas */
-  --font-canon: "GT Canon Trial", Georgia, serif;
+  --font-canon: "ABC Arizona Serif", Georgia, serif;
   --font-america: "GT America Trial", system-ui, sans-serif;
 }
 
@@ -96,6 +128,28 @@
   }
 }
 
+/* FabricGallery — animaciones de entrada de los elementos laterales por slide.
+   Se definen dos nombres idénticos (a / b) para poder alternar entre ellos
+   con animKey % 2, forzando al browser a reiniciar la animación en cada slide
+   sin necesidad de remontar los nodos (lo que causaba destello en pantallas anchas). */
+@keyframes fabric-left-in-a {
+  from { transform: translateX(190px) rotate(var(--r)); }
+  to   { transform: translateX(0px)   rotate(var(--r)); }
+}
+@keyframes fabric-left-in-b {
+  from { transform: translateX(190px) rotate(var(--r)); }
+  to   { transform: translateX(0px)   rotate(var(--r)); }
+}
+
+@keyframes fabric-right-in-a {
+  from { transform: translateX(-190px) rotate(var(--r)); }
+  to   { transform: translateX(0px)    rotate(var(--r)); }
+}
+@keyframes fabric-right-in-b {
+  from { transform: translateX(-190px) rotate(var(--r)); }
+  to   { transform: translateX(0px)    rotate(var(--r)); }
+}
+
 /* ─────────────────────────────────────────
    Clases de utilidad no generables por Tailwind
    ───────────────────────────────────────── */
@@ -116,16 +170,31 @@
     color 600ms ease;
 }
 
-/* Underline de costura: línea punteada naranja que imita una puntada de tela */
+/* Underline de costura: siempre 3-4 guiones proporcionales al ancho del elemento.
+   Cada tile ocupa el 27% del ancho total → ~3.7 repeticiones = 3-4 guiones. */
 .stitch {
-  background-image: repeating-linear-gradient(
-    to right,
-    #F54E00 0px,
-    #F54E00 4px,
-    transparent 4px,
-    transparent 8px
-  );
+  background-image: linear-gradient(to right, #F54E00 60%, transparent 60%);
+  background-size: 27% 100%;
+  background-repeat: repeat-x;
   background-color: transparent;
+}
+
+/* Variante animada: entra de izquierda a derecha, sale de derecha a izquierda.
+   transform-origin no transiciona → cambia instantáneamente al estado de hover,
+   dejando que solo scaleX haga la transición suave. */
+.stitch-line {
+  background-image: linear-gradient(to right, #F54E00 60%, transparent 60%);
+  background-size: 27% 100%;
+  background-repeat: repeat-x;
+  background-color: transparent;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 320ms ease;
+}
+
+.group:hover .stitch-line {
+  transform-origin: left;
+  transform: scaleX(1);
 }
 
 /* Menú móvil: drawer lateral izquierdo */

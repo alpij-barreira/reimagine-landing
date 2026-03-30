@@ -34,7 +34,7 @@ function NavLink({
       {children}
       <span
         aria-hidden
-        className="absolute inset-x-0 -bottom-0.5 h-px stitch origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+        className="absolute inset-x-0 -bottom-0.5 h-px stitch-line"
       />
     </Link>
   );
@@ -66,7 +66,7 @@ function CartIcon({ onClick }: { onClick?: () => void }) {
       </svg>
       <span
         aria-hidden
-        className="absolute inset-x-0 -bottom-0.5 h-px stitch origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+        className="absolute inset-x-0 -bottom-0.5 h-px stitch-line"
       />
     </Link>
   );
@@ -203,7 +203,7 @@ export default function Navbar() {
               {l.label}
               <span
                 aria-hidden
-                className="absolute inset-x-0 -bottom-0.5 h-px stitch origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+                className="absolute inset-x-0 -bottom-0.5 h-px stitch-line"
               />
             </Link>
           ))}
@@ -235,7 +235,7 @@ export default function Navbar() {
             Carrito
             <span
               aria-hidden
-              className="absolute inset-x-0 -bottom-0.5 h-px stitch origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+              className="absolute inset-x-0 -bottom-0.5 h-px stitch-line"
             />
           </Link>
         </div>
