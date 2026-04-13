@@ -1,17 +1,48 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+const IMAGES = [
+  { src: "/images/Ropa11.png", alt: "Reimagine — running de autor" },
+  { src: "/images/ropaHor2.png", alt: "Reimagine — moda deportiva" },
+];
+
+const INTERVAL_MS = 5000;
+const TRANSITION_MS = 1200;
 
 export default function Hero() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % IMAGES.length);
+    }, INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Imagen de fondo */}
-      <Image
-        src="/images/Ropa11.png"
-        alt="Reimagine — running de autor"
-        fill
-        priority
-        className="object-cover object-top"
-        sizes="100vw"
-      />
+      {/* Imágenes en crossfade */}
+      {IMAGES.map((img, i) => (
+        <div
+          key={img.src}
+          className="absolute inset-0"
+          style={{
+            opacity: i === current ? 1 : 0,
+            transition: `opacity ${TRANSITION_MS}ms ease-in-out`,
+          }}
+        >
+          <Image
+            src={img.src}
+            alt={img.alt}
+            fill
+            priority={i === 0}
+            className="object-cover object-top"
+            sizes="100vw"
+          />
+        </div>
+      ))}
 
       {/* Overlay oscuro sutil */}
       <div className="absolute inset-0 bg-black/35" />
