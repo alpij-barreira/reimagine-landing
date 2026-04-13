@@ -6,11 +6,10 @@ import { useEffect, useState } from "react";
 const LINKS_LEFT = [
   { href: "/mujer", label: "Mujer" },
   { href: "/hombre", label: "Hombre" },
-  { href: "/colecciones", label: "Colecciones" },
 ];
 
 const LINKS_RIGHT = [
-  { href: "/esenciales", label: "Esenciales" },
+  { href: "/colecciones", label: "Colecciones" },
   { href: "/nosotros", label: "Nosotros" },
 ];
 
@@ -40,37 +39,6 @@ function NavLink({
   );
 }
 
-function CartIcon({ onClick }: { onClick?: () => void }) {
-  return (
-    <Link
-      href="/carrito"
-      aria-label="Carrito"
-      onClick={onClick}
-      className="group relative inline-flex items-center justify-center leading-none"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden
-      >
-        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
-        <path d="M3 6h18" />
-        <path d="M16 10a4 4 0 0 1-8 0" />
-      </svg>
-      <span
-        aria-hidden
-        className="absolute inset-x-0 -bottom-0.5 h-px stitch-line"
-      />
-    </Link>
-  );
-}
 
 function HamburgerIcon({ open }: { open: boolean }) {
   return (
@@ -147,7 +115,6 @@ export default function Navbar() {
             {LINKS_RIGHT.map((l) => (
               <NavLink key={l.href} href={l.href}>{l.label}</NavLink>
             ))}
-            <CartIcon />
           </div>
         </nav>
 
@@ -171,8 +138,8 @@ export default function Navbar() {
             Reimagine
           </Link>
 
-          {/* Carrito */}
-          <CartIcon onClick={close} />
+          {/* Espacio para mantener el logo centrado */}
+          <div className="w-8" />
         </nav>
       </header>
 
@@ -209,36 +176,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Separador + carrito */}
-        <div className="mx-8 mt-8 pt-8 border-t border-white/10">
-          <Link
-            href="/carrito"
-            onClick={close}
-            className="group relative font-america text-[13px] tracking-[0.14em] uppercase text-white/70 hover:text-white transition-colors duration-200 w-fit flex items-center gap-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden
-            >
-              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
-              <path d="M3 6h18" />
-              <path d="M16 10a4 4 0 0 1-8 0" />
-            </svg>
-            Carrito
-            <span
-              aria-hidden
-              className="absolute inset-x-0 -bottom-0.5 h-px stitch-line"
-            />
-          </Link>
-        </div>
       </div>
     </>
   );
