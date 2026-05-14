@@ -13,8 +13,8 @@ interface Product {
 
 const PRODUCTS: Product[] = [
   { id: 1, name: "Anorak Corto Azul",         price: 185, images: ["/images/ropaHor1.png", "/images/Ropa8.png"] },
-  { id: 2, name: "Camiseta Manga Larga Miles", price: 95,  images: ["/images/Ropa3.png",    "/images/Ropa1.png"] },
-  { id: 3, name: "Pantalon Ciclista Aria",     price: 135, images: ["/images/Ropa4.png",    "/images/Ropa9.png"] },
+  { id: 2, name: "Conjunto deportivo negro Aria", price: 135, images: ["/images/Aria1.png", "/images/Aria2.png", "/images/Aria3.png"] },
+  { id: 3, name: "Chaqueta tecnica Lagos",     price: 185, images: ["/images/Lagos1.png",   "/images/Lagos2.png"] },
   { id: 4, name: "Camiseta Lagos Noir",        price: 85,  images: ["/images/Ropa5.png",    "/images/Ropa10.png"] },
   { id: 5, name: "Sudadera Contour White",     price: 165, images: ["/images/Ropa6.png",    "/images/Ropa2.png"] },
   { id: 6, name: "Parka Vestido Air",          price: 245, images: ["/images/ropaHor2.png", "/images/Ropa11.png"] },
