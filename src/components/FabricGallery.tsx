@@ -94,7 +94,7 @@ export default function FabricGallery() {
 
       {/* ── Layout: en móvil, imagen arriba + botones debajo;
            en desktop, botones izquierda + imagen derecha ── */}
-      <div className="flex flex-col-reverse gap-2.5 md:flex-row md:items-start">
+      <div className="flex flex-col gap-2.5 md:flex-row md:items-start">
 
         {/* ── Botones expandibles — debajo en móvil, columna izquierda en desktop ── */}
         <div className="flex flex-col border-t border-brand-black/12 md:flex-1">
