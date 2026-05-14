@@ -102,7 +102,7 @@ export default function Manifesto() {
       {/* Imagen izquierda */}
       <div className="relative w-1/2 min-h-[70vh]">
         <Image
-          src="/images/Ropa1.png"
+          src="/images/manifesto.jpg"
           alt="Reimagine"
           fill
           quality={95}
