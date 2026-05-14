@@ -134,43 +134,44 @@ function ProductCard({
 /* ── Componente principal ── */
 export default function FeaturedProducts() {
   return (
-    <section className="px-10 py-16">
+    <section className="px-5 py-12 md:px-10 md:py-16">
       {/* Cabecera */}
-      <div className="flex justify-between items-end mb-8">
+      <div className="flex flex-col gap-3 mb-6 md:flex-row md:justify-between md:items-end md:gap-0 md:mb-8">
         <h2 className="font-canon italic text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.01em] text-brand-black">
           Descubre<br />tu nuevo camino.
         </h2>
-        <p className="font-america text-[11px] text-brand-black/40 max-w-[180px] leading-[1.7] text-right">
+        <p className="font-america text-[11px] text-brand-black/40 max-w-[180px] leading-[1.7] md:text-right">
           Prendas de temporada en tejidos<br />
           de Japón, Italia y Francia.
         </p>
       </div>
 
-      {/* ── Layout 4 columnas: 2×2 izquierda + grande derecha ── */}
-      <div className="flex gap-2.5">
-        {/* Izquierda: grid 2×2 */}
-        <div className="flex-1 grid grid-cols-2 gap-2.5">
+      {/* ── Layout: en móvil, tarjeta grande arriba + 2x2 debajo;
+           en desktop, 2x2 izquierda + grande a la derecha ── */}
+      <div className="flex flex-col gap-2.5 md:flex-row">
+        {/* Tarjeta grande (en móvil aparece primero) */}
+        <ProductCard
+          product={PRODUCTS[0]}
+          containerClass="aspect-[4/5] md:aspect-auto md:flex-1 md:min-h-0"
+          wrapperClass="md:flex-1 md:order-2"
+          sizes="(min-width: 768px) 50vw, 100vw"
+        />
+
+        {/* Grid 2x2 */}
+        <div className="grid grid-cols-2 gap-2.5 md:flex-1 md:order-1">
           {[PRODUCTS[1], PRODUCTS[2], PRODUCTS[3], PRODUCTS[4]].map((product) => (
             <ProductCard
               key={product.id}
               product={product}
               containerClass="aspect-[4/5]"
-              sizes="25vw"
+              sizes="(min-width: 768px) 25vw, 50vw"
             />
           ))}
         </div>
-
-        {/* Derecha: tarjeta grande */}
-        <ProductCard
-          product={PRODUCTS[0]}
-          containerClass="flex-1 min-h-0"
-          wrapperClass="flex-1"
-          sizes="50vw"
-        />
       </div>
 
       {/* CTA final */}
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-8 md:mt-10">
         <CTA label="Descubrir mas" href="/colecciones" />
       </div>
     </section>

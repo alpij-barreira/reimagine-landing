@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 /*
   BACKUP: la versión anterior del carrusel con tres imágenes y flechas
@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
 */
 
 /* Imagen que se muestra cuando ningún botón está activo */
-const DEFAULT_IMAGE = "/images/cloth.jpg";
+const DEFAULT_IMAGE = "/images/Tela2.png";
 
 const FABRICS = [
   {
@@ -20,7 +20,6 @@ const FABRICS = [
     description:
       "Nuestras telas azules se elaboran siguiendo el proceso tradicional conocido como Aizome, una técnica de teñido milenaria que impregna cada fibra de historia y precisión artesanal.",
     image: "/images/Tela17.png",
-    video: "/videos/japan.mp4",
   },
   {
     id: "francia",
@@ -29,7 +28,6 @@ const FABRICS = [
     description:
       "Cultivar lino es un arte dominado por los agricultores franceses desde hace siglos. Francia ocupa un lugar privilegiado en la industria textil mundial gracias a la calidad incomparable de su fibra.",
     image: "/images/Tela10.png",
-    video: "/videos/france.mp4",
   },
   {
     id: "italia",
@@ -38,66 +36,30 @@ const FABRICS = [
     description:
       "Para nuestras prendas de invierno, contamos con la colaboración de la legendaria sastrería Lanieri y sus décadas de experiencia en la selección y tratamiento de lanas nobles.",
     image: "/images/Tela15.png",
-    video: "/videos/bee.mp4",
   },
 ];
-
-/* ── Vídeo que se reproduce automáticamente al activarse y se queda
-   en el último frame al terminar (comportamiento tipo gif). ── */
-function FabricVideo({ src, isActive }: { src: string; isActive: boolean }) {
-  const ref = useRef<HTMLVideoElement | null>(null);
-
-  useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
-    if (isActive) {
-      v.currentTime = 0;
-      v.play().catch(() => {});
-    } else {
-      v.pause();
-      v.currentTime = 0;
-    }
-  }, [isActive]);
-
-  return (
-    <video
-      ref={ref}
-      src={src}
-      muted
-      playsInline
-      preload="auto"
-      className="absolute inset-0 w-full h-full object-cover object-center"
-      style={{
-        opacity: isActive ? 1 : 0,
-        transform: isActive ? "translateX(0px)" : "translateX(-32px)",
-        transition: "opacity 700ms ease, transform 700ms ease",
-      }}
-    />
-  );
-}
 
 export default function FabricGallery() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section className="px-5 py-12 md:px-10 md:py-16 bg-brand-white">
+    <section className="px-10 py-16 bg-brand-white">
       {/* ── Cabecera ── */}
-      <div className="flex flex-col gap-3 mb-8 md:flex-row md:justify-between md:items-end md:gap-0 md:mb-10">
+      <div className="flex justify-between items-end mb-10">
         <h2 className="font-canon italic text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.01em] text-brand-black">
           Tejidos que<br />merecen su origen.
         </h2>
-        <p className="font-america text-[11px] text-brand-black/40 max-w-[210px] leading-[1.7] md:text-right">
+        <p className="font-america text-[11px] text-brand-black/40 max-w-[210px] leading-[1.7] text-right">
           Cada fibra cuenta una historia.<br />
           Japón, Italia y Francia.
         </p>
       </div>
 
-      {/* ── Layout: en móvil, imagen arriba + botones debajo;
-           en desktop, botones izquierda + imagen derecha ── */}
-      <div className="flex flex-col-reverse gap-2.5 md:flex-row md:items-start">
+      {/* ── Layout: botones izquierda + imagen derecha ── */}
+      <div className="flex gap-2.5 items-start">
 
-        {/* ── Botones expandibles — debajo en móvil, columna izquierda en desktop ── */}
-        <div className="flex flex-col border-t border-brand-black/12 md:flex-1">
+        {/* ── Columna izquierda: botones expandibles — 1 de 4 columnas ── */}
+        <div className="flex-1 flex flex-col border-t border-brand-black/12">
           {FABRICS.map((fabric, i) => {
             const isActive = i === active;
             return (
@@ -146,8 +108,8 @@ export default function FabricGallery() {
           })}
         </div>
 
-        {/* ── Imagen — arriba en móvil, derecha en desktop ── */}
-        <div className="relative h-[320px] md:h-[480px] md:flex-[3] overflow-hidden">
+        {/* ── Columna derecha: imagen — 3 de 4 columnas ── */}
+        <div className="flex-[3] relative h-[480px] overflow-hidden">
           {/* Imagen por defecto — visible solo cuando active === null */}
           <Image
             src={DEFAULT_IMAGE}
@@ -163,31 +125,23 @@ export default function FabricGallery() {
             priority
           />
 
-          {/* Medios (imagen o vídeo) de cada tela */}
-          {FABRICS.map((fabric, i) =>
-            fabric.video ? (
-              <FabricVideo
-                key={fabric.id}
-                src={fabric.video}
-                isActive={i === active}
-              />
-            ) : (
-              <Image
-                key={fabric.id}
-                src={fabric.image}
-                alt={fabric.label}
-                fill
-                className="object-cover object-center"
-                style={{
-                  opacity: i === active ? 1 : 0,
-                  transform: i === active ? "translateX(0px)" : "translateX(-32px)",
-                  transition: "opacity 700ms ease, transform 700ms ease",
-                }}
-                sizes="60vw"
-                priority={i === 0}
-              />
-            )
-          )}
+          {/* Imágenes de cada tela */}
+          {FABRICS.map((fabric, i) => (
+            <Image
+              key={fabric.id}
+              src={fabric.image}
+              alt={fabric.label}
+              fill
+              className="object-cover object-center"
+              style={{
+                opacity: i === active ? 1 : 0,
+                transform: i === active ? "translateX(0px)" : "translateX(-32px)",
+                transition: "opacity 700ms ease, transform 700ms ease",
+              }}
+              sizes="60vw"
+              priority={i === 0}
+            />
+          ))}
         </div>
 
       </div>

@@ -35,9 +35,9 @@ export default function Footer() {
   return (
     <footer className="bg-brand-black text-white">
       {/* Cuerpo principal */}
-      <div className="px-10 pt-16 pb-12 grid grid-cols-12 gap-x-6 gap-y-10">
+      <div className="px-5 pt-12 pb-10 md:px-10 md:pt-16 md:pb-12 grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-10">
         {/* Columna marca */}
-        <div className="col-span-5">
+        <div className="col-span-2 md:col-span-5">
           <Link
             href="/"
             className="font-canon italic text-[1.65rem] leading-none tracking-[-0.01em] text-white block mb-4"
@@ -52,7 +52,7 @@ export default function Footer() {
 
         {/* Columnas de navegación */}
         {NAV_COLUMNS.map((col) => (
-          <div key={col.label} className="col-span-2 col-start-auto">
+          <div key={col.label} className="col-span-1 md:col-span-2 md:col-start-auto">
             <p className="font-america text-[8.5px] tracking-[0.24em] uppercase text-white/30 mb-5">
               {col.label}
             </p>
@@ -73,10 +73,10 @@ export default function Footer() {
       </div>
 
       {/* Separador */}
-      <div className="mx-10 h-px bg-white/8" />
+      <div className="mx-5 md:mx-10 h-px bg-white/8" />
 
       {/* Barra legal */}
-      <div className="px-10 py-5 flex items-center justify-between">
+      <div className="px-5 py-5 md:px-10 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <p className="font-america text-[10px] text-white/20 tracking-[0.04em]">
           &copy; 2026 Reimagine — Literary Sport. Todos los derechos reservados.
         </p>

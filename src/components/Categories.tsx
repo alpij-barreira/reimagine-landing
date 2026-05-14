@@ -59,34 +59,34 @@ function CategoryCard({
 
 export default function Categories() {
   return (
-    <section className="px-10 py-16">
+    <section className="px-5 py-12 md:px-10 md:py-16">
       {/* Título + copy */}
-      <div className="flex justify-between items-end mb-10">
+      <div className="flex flex-col gap-3 mb-8 md:flex-row md:justify-between md:items-end md:gap-0 md:mb-10">
         <h2 className="font-canon italic text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.01em] text-brand-black">
           Sumérgete<br />en nuestro universo.
         </h2>
-        <p className="font-america text-[11px] text-brand-black/40 max-w-[210px] leading-[1.7] text-right">
+        <p className="font-america text-[11px] text-brand-black/40 max-w-[210px] leading-[1.7] md:text-right">
           Cinco universos, una sola firma.<br />
           Mujer, hombre, esenciales y accesorios.
         </p>
       </div>
 
-      {/* Fila 1: 4 columnas */}
-      <div className="grid grid-cols-4 gap-2.5">
+      {/* Fila 1: 2 columnas en móvil, 4 en desktop */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
         {ROW1.map((cat) => (
-          <CategoryCard key={cat.id} cat={cat} aspectClass="aspect-[3/4]" sizes="25vw" />
+          <CategoryCard key={cat.id} cat={cat} aspectClass="aspect-[3/4]" sizes="(min-width: 768px) 25vw, 50vw" />
         ))}
       </div>
 
-      {/* Fila 2: 2 columnas */}
-      <div className="grid grid-cols-2 gap-2.5 mt-2.5">
+      {/* Fila 2: 1 columna en móvil, 2 en desktop */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 mt-2.5">
         {ROW2.map((cat) => (
-          <CategoryCard key={cat.id} cat={cat} aspectClass="aspect-[3/2]" sizes="50vw" />
+          <CategoryCard key={cat.id} cat={cat} aspectClass="aspect-[3/2]" sizes="(min-width: 768px) 50vw, 100vw" />
         ))}
       </div>
 
       {/* CTA */}
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-8 md:mt-10">
         <CTA label="Ver todas" href="/colecciones" />
       </div>
     </section>

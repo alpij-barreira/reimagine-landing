@@ -98,22 +98,25 @@ export default function Manifesto() {
   });
 
   return (
-    <section ref={sectionRef} className="flex min-h-[70vh] bg-brand-black">
-      {/* Imagen izquierda */}
-      <div className="relative w-1/2 min-h-[70vh]">
+    <section ref={sectionRef} className="flex flex-col md:flex-row min-h-[70vh] bg-brand-black">
+      {/* Imagen — arriba en móvil, izquierda en desktop */}
+      <div className="relative w-full h-[280px] md:w-1/2 md:h-auto md:min-h-[70vh]">
         <Image
           src="/images/manifesto.jpg"
           alt="Reimagine"
           fill
           quality={95}
           className="object-cover object-top"
-          sizes="50vw"
+          sizes="(min-width: 768px) 50vw, 100vw"
         />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-r from-transparent to-brand-black" />
+        {/* Degradado lateral (sólo en desktop, donde se funde con el panel a la derecha) */}
+        <div className="hidden md:block absolute inset-y-0 right-0 w-24 bg-gradient-to-r from-transparent to-brand-black" />
+        {/* Degradado inferior en móvil para fundir con el panel de texto debajo */}
+        <div className="md:hidden absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-brand-black" />
       </div>
 
-      {/* Panel derecho */}
-      <div ref={panelRef} className="w-1/2 flex flex-col justify-center px-16 py-12">
+      {/* Panel — debajo en móvil, derecha en desktop */}
+      <div ref={panelRef} className="w-full md:w-1/2 flex flex-col justify-center px-6 py-12 md:px-16">
         {/* Líneas del manifiesto */}
         <div className="space-y-4 mb-20">
           {LINES.map((line, i) => (
