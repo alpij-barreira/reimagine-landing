@@ -10,7 +10,7 @@ import { useState } from "react";
 */
 
 /* Imagen que se muestra cuando ningún botón está activo */
-const DEFAULT_IMAGE = "/images/Tela2.png";
+const DEFAULT_IMAGE = "/images/cloth.jpg";
 
 const FABRICS = [
   {
