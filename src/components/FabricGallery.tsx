@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /*
   BACKUP: la versión anterior del carrusel con tres imágenes y flechas
@@ -20,6 +20,7 @@ const FABRICS = [
     description:
       "Nuestras telas azules se elaboran siguiendo el proceso tradicional conocido como Aizome, una técnica de teñido milenaria que impregna cada fibra de historia y precisión artesanal.",
     image: "/images/Tela17.png",
+    video: "/videos/japan.mp4",
   },
   {
     id: "francia",
@@ -38,6 +39,40 @@ const FABRICS = [
     image: "/images/Tela15.png",
   },
 ];
+
+/* ── Vídeo que se reproduce automáticamente al activarse y se queda
+   en el último frame al terminar (comportamiento tipo gif). ── */
+function FabricVideo({ src, isActive }: { src: string; isActive: boolean }) {
+  const ref = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    if (isActive) {
+      v.currentTime = 0;
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+      v.currentTime = 0;
+    }
+  }, [isActive]);
+
+  return (
+    <video
+      ref={ref}
+      src={src}
+      muted
+      playsInline
+      preload="auto"
+      className="absolute inset-0 w-full h-full object-cover object-center"
+      style={{
+        opacity: isActive ? 1 : 0,
+        transform: isActive ? "translateX(0px)" : "translateX(-32px)",
+        transition: "opacity 700ms ease, transform 700ms ease",
+      }}
+    />
+  );
+}
 
 export default function FabricGallery() {
   const [active, setActive] = useState<number | null>(null);
@@ -125,23 +160,31 @@ export default function FabricGallery() {
             priority
           />
 
-          {/* Imágenes de cada tela */}
-          {FABRICS.map((fabric, i) => (
-            <Image
-              key={fabric.id}
-              src={fabric.image}
-              alt={fabric.label}
-              fill
-              className="object-cover object-center"
-              style={{
-                opacity: i === active ? 1 : 0,
-                transform: i === active ? "translateX(0px)" : "translateX(-32px)",
-                transition: "opacity 700ms ease, transform 700ms ease",
-              }}
-              sizes="60vw"
-              priority={i === 0}
-            />
-          ))}
+          {/* Medios (imagen o vídeo) de cada tela */}
+          {FABRICS.map((fabric, i) =>
+            fabric.video ? (
+              <FabricVideo
+                key={fabric.id}
+                src={fabric.video}
+                isActive={i === active}
+              />
+            ) : (
+              <Image
+                key={fabric.id}
+                src={fabric.image}
+                alt={fabric.label}
+                fill
+                className="object-cover object-center"
+                style={{
+                  opacity: i === active ? 1 : 0,
+                  transform: i === active ? "translateX(0px)" : "translateX(-32px)",
+                  transition: "opacity 700ms ease, transform 700ms ease",
+                }}
+                sizes="60vw"
+                priority={i === 0}
+              />
+            )
+          )}
         </div>
 
       </div>
