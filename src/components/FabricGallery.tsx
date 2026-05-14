@@ -66,11 +66,13 @@ function FabricVideo({ src, isActive }: { src: string; isActive: boolean }) {
       muted
       playsInline
       preload="auto"
-      className="absolute inset-0 w-full h-full object-cover object-center"
+      aria-hidden={!isActive}
+      className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none"
       style={{
         opacity: isActive ? 1 : 0,
+        visibility: isActive ? "visible" : "hidden",
         transform: isActive ? "translateX(0px)" : "translateX(-32px)",
-        transition: "opacity 700ms ease, transform 700ms ease",
+        transition: "opacity 700ms ease, transform 700ms ease, visibility 0s linear 700ms",
       }}
     />
   );
@@ -133,7 +135,7 @@ export default function FabricGallery() {
                 {/* Contenido expandido */}
                 <div
                   className="overflow-hidden transition-all duration-500 ease-in-out"
-                  style={{ maxHeight: isActive ? "220px" : "0px" }}
+                  style={{ maxHeight: isActive ? "320px" : "0px" }}
                 >
                   <div className="px-6 pb-8">
                     <p className="font-america text-[13px] text-brand-black/60 leading-[1.75]">
