@@ -39,6 +39,7 @@ function CategoryCard({
         src={cat.image}
         alt={cat.title}
         fill
+        quality={95}
         className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
         sizes={sizes}
       />
