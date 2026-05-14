@@ -98,7 +98,7 @@ export default function Manifesto() {
   });
 
   return (
-    <section ref={sectionRef} className="flex min-h-screen bg-brand-black">
+    <section ref={sectionRef} className="flex min-h-screen bg-brand-black mx-auto max-w-6xl">
       {/* Imagen izquierda */}
       <div className="relative w-1/2 min-h-screen">
         <Image
@@ -106,13 +106,13 @@ export default function Manifesto() {
           alt="Reimagine"
           fill
           className="object-cover object-top"
-          sizes="50vw"
+          sizes="(min-width: 1280px) 40vw, 50vw"
         />
         <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-r from-transparent to-brand-black" />
       </div>
 
       {/* Panel derecho */}
-      <div ref={panelRef} className="w-1/2 flex flex-col justify-center px-16 py-20">
+      <div ref={panelRef} className="w-1/2 flex flex-col justify-center px-12 py-20">
         {/* Líneas del manifiesto */}
         <div className="space-y-4 mb-20">
           {LINES.map((line, i) => (
