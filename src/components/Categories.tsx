@@ -18,7 +18,7 @@ const ROW1 = [
 
 const ROW2 = [
   { id: "accesorios",  title: "Accesorios",  image: "/images/Ropa7.png",   href: "/accesorios" },
-  { id: "novedades",   title: "Novedades",   image: "/images/Ropa2.png",   href: "/novedades" },
+  { id: "novedades",   title: "Novedades",   image: "/images/women.jpg",   href: "/novedades" },
 ];
 
 function CategoryCard({
