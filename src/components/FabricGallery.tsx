@@ -29,6 +29,7 @@ const FABRICS = [
     description:
       "Cultivar lino es un arte dominado por los agricultores franceses desde hace siglos. Francia ocupa un lugar privilegiado en la industria textil mundial gracias a la calidad incomparable de su fibra.",
     image: "/images/Tela10.png",
+    video: "/videos/france.mp4",
   },
   {
     id: "italia",
