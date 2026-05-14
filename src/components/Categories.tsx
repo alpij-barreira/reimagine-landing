@@ -17,7 +17,7 @@ const ROW1 = [
 ];
 
 const ROW2 = [
-  { id: "accesorios",  title: "Accesorios",  image: "/images/Ropa7.png",   href: "/accesorios" },
+  { id: "accesorios",  title: "Accesorios",  image: "/images/accesos.jpg", href: "/accesorios" },
   { id: "novedades",   title: "Novedades",   image: "/images/women.jpg",   href: "/novedades" },
 ];
 
