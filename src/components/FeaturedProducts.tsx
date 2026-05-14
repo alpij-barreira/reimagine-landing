@@ -49,10 +49,12 @@ function ProductCard({
   const [hovering, setHovering] = useState(false);
   const total = product.images.length;
 
-  /* Auto-avance del carrusel mientras se mantiene el hover (desktop).
+  /* Al hacer hover, avanza inmediatamente a la siguiente imagen.
+     Si el ratón se mantiene encima, continúa el carrusel automático.
      Al salir del hover, vuelve a la primera imagen. */
   useEffect(() => {
     if (!hovering || total <= 1) return;
+    setIdx((i) => (i + 1) % total);
     const timer = setInterval(() => {
       setIdx((i) => (i + 1) % total);
     }, AUTO_INTERVAL_MS);
