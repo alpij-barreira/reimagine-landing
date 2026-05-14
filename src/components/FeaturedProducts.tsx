@@ -15,11 +15,11 @@ interface Product {
 }
 
 const PRODUCTS: Product[] = [
-  { id: 1, name: "Anorak Corto Azul",         price: 185, images: ["/images/ropaHor1.png", "/images/Ropa8.png"] },
+  { id: 1, name: "Conjunto deportivo verde Bastereti", price: 220, images: ["/images/bigModel.jpg"] },
   { id: 2, name: "Conjunto deportivo negro Aria", price: 135, images: ["/images/Aria1.png", "/images/Aria3.png"] },
-  { id: 3, name: "Chaqueta tecnica Lagos",     price: 185, images: ["/images/Lagos1.png",   "/images/Lagos2.jpg"] },
+  { id: 3, name: "Chaqueta técnica Lagos",     price: 185, images: ["/images/Lagos1.png",   "/images/Lagos2.jpg"] },
   { id: 4, name: "Chaleco deportivo Ada",      price: 125, images: ["/images/vest1.jpg",    "/images/vest2.jpg"] },
-  { id: 5, name: "Sudadera Contour White",     price: 165, images: ["/images/Ropa6.png",    "/images/Ropa2.png"] },
+  { id: 5, name: "Camiseta transpirable Harper", price: 70,  images: ["/images/verde1.jpg",  "/images/verde2.jpg"] },
   { id: 6, name: "Parka Vestido Air",          price: 245, images: ["/images/ropaHor2.png", "/images/Ropa11.png"] },
 ];
 
@@ -81,39 +81,49 @@ function ProductCard({
       onMouseLeave={() => setHovering(false)}
     >
       <div className={`relative overflow-hidden ${containerClass}`}>
-        {/* Imágenes apiladas: crossfade con opacity */}
+        {/* Imágenes apiladas: crossfade con opacity.
+            Cuando solo hay una imagen, aplicamos un suave zoom en hover. */}
         {product.images.map((src, i) => (
           <Image
             key={src}
             src={src}
             alt={i === 0 ? product.name : ""}
             fill
-            className={`object-cover object-top transition-opacity duration-500 ${i === idx ? "opacity-100" : "opacity-0"}`}
+            className={
+              total === 1
+                ? "object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                : `object-cover object-top transition-opacity duration-500 ${i === idx ? "opacity-100" : "opacity-0"}`
+            }
             sizes={sizes}
             priority={i === 0}
           />
         ))}
 
-        {/* Flechas laterales — solo visibles en mobile, siempre. En desktop el avance es automático en hover. */}
-        <button
-          onClick={prev}
-          aria-label="Imagen anterior"
-          className="md:hidden absolute left-2 inset-y-0 flex items-center justify-center z-10"
-        >
-          <span className="text-[26px] leading-none select-none text-white mix-blend-difference">
-            ‹
-          </span>
-        </button>
+        {/* Flechas laterales — solo visibles en mobile y cuando hay más de una imagen.
+            En desktop el avance es automático en hover. */}
+        {total > 1 && (
+          <>
+            <button
+              onClick={prev}
+              aria-label="Imagen anterior"
+              className="md:hidden absolute left-2 inset-y-0 flex items-center justify-center z-10"
+            >
+              <span className="text-[26px] leading-none select-none text-white mix-blend-difference">
+                ‹
+              </span>
+            </button>
 
-        <button
-          onClick={next}
-          aria-label="Imagen siguiente"
-          className="md:hidden absolute right-2 inset-y-0 flex items-center justify-center z-10"
-        >
-          <span className="text-[26px] leading-none select-none text-white mix-blend-difference">
-            ›
-          </span>
-        </button>
+            <button
+              onClick={next}
+              aria-label="Imagen siguiente"
+              className="md:hidden absolute right-2 inset-y-0 flex items-center justify-center z-10"
+            >
+              <span className="text-[26px] leading-none select-none text-white mix-blend-difference">
+                ›
+              </span>
+            </button>
+          </>
+        )}
       </div>
 
       <ProductInfo product={product} />
