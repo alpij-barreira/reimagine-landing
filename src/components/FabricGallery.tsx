@@ -38,6 +38,7 @@ const FABRICS = [
     description:
       "Para nuestras prendas de invierno, contamos con la colaboración de la legendaria sastrería Lanieri y sus décadas de experiencia en la selección y tratamiento de lanas nobles.",
     image: "/images/Tela15.png",
+    video: "/videos/bee.mp4",
   },
 ];
 
