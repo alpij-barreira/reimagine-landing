@@ -48,12 +48,12 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/35" />
 
       {/* Contenido centrado */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-6">
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center">
         {/* Logo — entra primero */}
         <h1
           className="font-canon italic text-white leading-none tracking-[-0.02em] select-none"
           style={{
-            fontSize: "clamp(5rem, 14vw, 13rem)",
+            fontSize: "clamp(3.25rem, 14vw, 13rem)",
             animation: "fade-up 1.36s cubic-bezier(0.16, 1, 0.3, 1) 0.43s both",
           }}
         >
@@ -62,7 +62,7 @@ export default function Hero() {
 
         {/* Tagline — entra despues */}
         <p
-          className="font-america text-white uppercase tracking-[0.22em] text-[11px] select-none"
+          className="font-america text-white uppercase tracking-[0.22em] text-[10px] md:text-[11px] select-none"
           style={{
             animation: "fade-up 1.19s cubic-bezier(0.16, 1, 0.3, 1) 1.62s both",
           }}
