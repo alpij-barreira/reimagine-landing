@@ -10,7 +10,7 @@ import CTA from "./CTA";
 */
 
 const ROW1 = [
-  { id: "mujer",       title: "Mujer",       image: "/images/Ropa1.png",   href: "/mujer" },
+  { id: "mujer",       title: "Mujer",       image: "/images/women.jpg",   href: "/mujer" },
   { id: "hombre",      title: "Hombre",      image: "/images/Ropa8.png",   href: "/hombre" },
   { id: "colecciones", title: "Colecciones", image: "/images/Ropa9.png",   href: "/colecciones" },
   { id: "esenciales",  title: "Esenciales",  image: "/images/Ropa10.png",  href: "/esenciales" },
