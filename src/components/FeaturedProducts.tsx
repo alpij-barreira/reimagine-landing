@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CTA from "./CTA";
+
+/* Intervalo del carrusel automático al hacer hover (ms) */
+const AUTO_INTERVAL_MS = 1400;
 
 interface Product {
   id: number;
@@ -43,7 +46,22 @@ function ProductCard({
   wrapperClass?: string;
 }) {
   const [idx, setIdx] = useState(0);
+  const [hovering, setHovering] = useState(false);
   const total = product.images.length;
+
+  /* Auto-avance del carrusel mientras se mantiene el hover (desktop).
+     Al salir del hover, vuelve a la primera imagen. */
+  useEffect(() => {
+    if (!hovering || total <= 1) return;
+    const timer = setInterval(() => {
+      setIdx((i) => (i + 1) % total);
+    }, AUTO_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [hovering, total]);
+
+  useEffect(() => {
+    if (!hovering) setIdx(0);
+  }, [hovering]);
 
   const prev = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -55,7 +73,11 @@ function ProductCard({
   };
 
   return (
-    <div className={`group flex flex-col ${wrapperClass}`}>
+    <div
+      className={`group flex flex-col ${wrapperClass}`}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
+    >
       <div className={`relative overflow-hidden ${containerClass}`}>
         {/* Imágenes apiladas: crossfade con opacity */}
         {product.images.map((src, i) => (
@@ -70,15 +92,13 @@ function ProductCard({
           />
         ))}
 
-        {/* Flechas laterales — solo visibles en hover */}
+        {/* Flechas laterales — solo visibles en mobile, siempre. En desktop el avance es automático en hover. */}
         <button
           onClick={prev}
           aria-label="Imagen anterior"
-          className="absolute left-2 inset-y-0 flex items-center justify-center opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 z-10"
+          className="md:hidden absolute left-2 inset-y-0 flex items-center justify-center z-10"
         >
-          <span
-            className="text-[26px] leading-none select-none text-white mix-blend-difference"
-          >
+          <span className="text-[26px] leading-none select-none text-white mix-blend-difference">
             ‹
           </span>
         </button>
@@ -86,11 +106,9 @@ function ProductCard({
         <button
           onClick={next}
           aria-label="Imagen siguiente"
-          className="absolute right-2 inset-y-0 flex items-center justify-center opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 z-10"
+          className="md:hidden absolute right-2 inset-y-0 flex items-center justify-center z-10"
         >
-          <span
-            className="text-[26px] leading-none select-none text-white mix-blend-difference"
-          >
+          <span className="text-[26px] leading-none select-none text-white mix-blend-difference">
             ›
           </span>
         </button>
