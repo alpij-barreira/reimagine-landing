@@ -13,7 +13,7 @@ const ROW1 = [
   { id: "mujer",       title: "Mujer",       image: "/images/women2.jpg",  href: "/mujer" },
   { id: "hombre",      title: "Hombre",      image: "/images/mencat.jpg",  href: "/hombre" },
   { id: "colecciones", title: "Colecciones", image: "/images/colecc.jpg",  href: "/colecciones" },
-  { id: "esenciales",  title: "Esenciales",  image: "/images/Ropa10.png",  href: "/esenciales" },
+  { id: "esenciales",  title: "Esenciales",  image: "/images/esencial.jpg", href: "/esenciales" },
 ];
 
 const ROW2 = [
