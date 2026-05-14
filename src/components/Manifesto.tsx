@@ -105,6 +105,7 @@ export default function Manifesto() {
           src="/images/Ropa1.png"
           alt="Reimagine"
           fill
+          quality={95}
           className="object-cover object-top"
           sizes="50vw"
         />
